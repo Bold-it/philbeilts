@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\MessageController as AdminMessageController;
 use App\Http\Controllers\Admin\JobController as AdminJobController;
 use App\Http\Controllers\Admin\SettingController as AdminSettingController;
+use App\Http\Controllers\Admin\IndustryController as AdminIndustryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Job Openings
     Route::resource('jobs', AdminJobController::class);
     Route::post('/jobs/{job}/toggle', [AdminJobController::class, 'toggle'])->name('jobs.toggle');
+
+    // Industries
+    Route::resource('industries', AdminIndustryController::class)->except(['show']);
 
     // System Settings & Cache
     Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');

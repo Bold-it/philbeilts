@@ -3,8 +3,15 @@
 @section('meta_description', $industry['short'] . ' Philbeilts Industrial Group operates across ' . $industry['title'] . ' in Ghana and Africa.')
 @section('content')
 
-<section class="page-header" style="background: linear-gradient(135deg, {{ $industry['color'] }}55, var(--dark));">
-    <div class="container">
+<section class="page-header" style="{{ empty($industry['image_url']) ? 'background: linear-gradient(135deg, ' . $industry['color'] . '55, var(--dark));' : '' }} position: relative; overflow: hidden;">
+    @if(!empty($industry['image_url']))
+        <div style="position: absolute; inset: 0; z-index: 0;">
+            <img src="{{ $industry['image_url'] }}" alt="{{ $industry['title'] }}"
+                 style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(135deg, {{ $industry['color'] }}cc, rgba(10,10,20,0.85));"></div>
+        </div>
+    @endif
+    <div class="container" style="position: relative; z-index: 1;">
         <div class="page-header-inner">
             <div class="breadcrumb">
                 <a href="{{ route('home') }}">Home</a>
@@ -13,7 +20,9 @@
                 <span>/</span>
                 <span>{{ $industry['title'] }}</span>
             </div>
-            <div style="font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 16px; opacity: 0.8;">{{ $industry['icon'] }}</div>
+            @if(empty($industry['image_url']))
+                <div style="font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 16px; opacity: 0.8;">{{ $industry['icon'] }}</div>
+            @endif
             <h1>{{ $industry['title'] }}</h1>
             <p>{{ $industry['short'] }}</p>
         </div>

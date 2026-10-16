@@ -137,12 +137,19 @@
             @foreach($industries as $industry)
             <a href="{{ route('industries.show', $industry['slug']) }}" class="industry-card">
                 <div class="industry-img-wrap">
-                    <div class="industry-img-placeholder" style="background: linear-gradient(135deg, {{ $industry['color'] }}33, {{ $industry['color'] }}88);">
-                        {{ $industry['icon'] }}
+                    @if(!empty($industry['image_url']))
+                        <img src="{{ $industry['image_url'] }}" alt="{{ $industry['title'] }}" class="industry-card-img">
                         <div class="industry-img-overlay">
                             <span class="industry-roman">{{ $industry['roman'] }}</span>
                         </div>
-                    </div>
+                    @else
+                        <div class="industry-img-placeholder" style="background: linear-gradient(135deg, {{ $industry['color'] }}33, {{ $industry['color'] }}88);">
+                            {{ $industry['icon'] }}
+                            <div class="industry-img-overlay">
+                                <span class="industry-roman">{{ $industry['roman'] }}</span>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="industry-card-body">
                     <h3 class="industry-card-title">{{ $industry['title'] }}</h3>

@@ -121,5 +121,8 @@ class DatabaseSeeder extends Seeder
         foreach ($jobs as $jobData) {
             JobListing::updateOrCreate(['title' => $jobData['title']], $jobData);
         }
+
+        // 4. Seed Industries
+        $this->call(IndustrySeeder::class);
     }
 }

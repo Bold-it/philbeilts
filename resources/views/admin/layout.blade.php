@@ -33,6 +33,9 @@
         <a href="{{ route('admin.jobs.index') }}" class="sidebar-link {{ request()->routeIs('admin.jobs*') ? 'active' : '' }}">
             <span>💼</span> Job Openings
         </a>
+        <a href="{{ route('admin.industries.index') }}" class="sidebar-link {{ request()->routeIs('admin.industries*') ? 'active' : '' }}">
+            <span>🏭</span> Industries
+        </a>
 
         <div class="nav-heading">Inquiries</div>
         <a href="{{ route('admin.messages.index') }}" class="sidebar-link {{ request()->routeIs('admin.messages*') ? 'active' : '' }}">
